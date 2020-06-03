@@ -2,12 +2,17 @@ const express=require('express')
 const Post = require('../models/postsModel')
 const router=express.Router()
 
+
+
+//gets all the posts
 router.get('/',async(req,res)=>{
     const data=await Post.find()
     res.json(data)
 })
 
 
+
+//gets the specfic post
 router.get('/:postId',async(req,res)=>{
     try{
         const post =await Post.findById(req.params.postId)
@@ -20,7 +25,7 @@ router.get('/:postId',async(req,res)=>{
 })
 
 
-
+//create  a new post
 router.post('/newPost',(req,res)=>{
     const post = new Post({
         title:req.body.title,
